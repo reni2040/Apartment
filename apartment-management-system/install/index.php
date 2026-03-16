@@ -12,6 +12,20 @@ if (file_exists(__DIR__ . '/../config.php') && !isset($_GET['reinstall'])) {
     exit;
 }
 
+// Debug function
+function get_db_diagnostics() {
+    $info = [];
+    $info['php_version'] = PHP_VERSION;
+    $info['pdo_mysql'] = extension_loaded('pdo_mysql') ? 'Yes' : 'No';
+    $info['mysqlnd'] = extension_loaded('mysqlnd') ? 'Yes' : 'No';
+    $info['cloudways_vars'] = [
+        'DB_HOST' => getenv('DB_HOST') ?: 'Not set',
+        'DB_NAME' => getenv('DB_NAME') ?: 'Not set', 
+        'DB_USER' => getenv('DB_USER') ?: 'Not set',
+    ];
+    return $info;
+}
+
 $current_step = $_GET['step'] ?? 'welcome';
 $step_index = array_search($current_step, STEPS);
 
@@ -22,6 +36,7 @@ if ($step_index === false) {
 
 $errors = [];
 $success = [];
+$diagnostics = get_db_diagnostics();
 
 // Process each step
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -38,12 +53,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'Please fill in all required fields';
         } else {
             try {
-                $pdo = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name", $db_user, $db_pass);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $dsn = "mysql:host=$db_host;port=$db_port;dbname=$db_name";
+                $pdo = new PDO($dsn, $db_user, $db_pass, [
+                    PDO::ATTR_TIMEOUT => 10,
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                ]);
                 $success[] = 'Database connection successful!';
                 $_SESSION['db_config'] = compact('db_host', 'db_port', 'db_name', 'db_user', 'db_pass');
             } catch (PDOException $e) {
                 $errors[] = 'Connection failed: ' . $e->getMessage();
+                $errors[] = 'Host: ' . $db_host . ' | Port: ' . $db_port . ' | DB: ' . $db_name;
             }
         }
     }
@@ -151,6 +170,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- Content Card -->
         <div class="bg-white rounded-xl shadow-lg p-8">
+            <!-- System Info -->
+            <div class="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h3 class="font-medium text-yellow-800 mb-2">🔧 System Diagnostics</h3>
+                <div class="text-xs text-yellow-700 space-y-1">
+                    <p>PHP Version: <?= $diagnostics['php_version'] ?></p>
+                    <p>PDO MySQL: <?= $diagnostics['pdo_mysql'] ?></p>
+                    <p>CloudWays DB Host Env: <?= $diagnostics['cloudways_vars']['DB_HOST'] ?></p>
+                </div>
+            </div>
+
             <!-- Errors -->
             <?php if (!empty($errors)): ?>
                 <div class="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
@@ -200,8 +229,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Database Host *</label>
-                                <input type="text" name="db_host" value="127.0.0.1" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <input type="text" name="db_host" id="db_host" value="localhost" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="e.g. localhost or mysql-xxxxx">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Port</label>
@@ -212,19 +242,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Database Name *</label>
-                            <input type="text" name="db_name" required
+                            <input type="text" name="db_name" id="db_name" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Username *</label>
-                            <input type="text" name="db_user" required
+                            <input type="text" name="db_user" id="db_user" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                            <input type="password" name="db_pass"
+                            <input type="password" name="db_pass" id="db_pass"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                     </div>
