@@ -9,7 +9,7 @@ if (file_exists(__DIR__ . '/../config.php')) {
 // Step 2: Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect form data
-    $db_host = $_POST['db_host'] ?? 'localhost';
+    $db_host = $_POST['db_host'] ?? '127.0.0.1';
     $db_name = $_POST['db_name'] ?? '';
     $db_user = $_POST['db_user'] ?? '';
     $db_pass = $_POST['db_pass'] ?? '';
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="db_host" class="block text-sm font-medium text-gray-700">
                             Database Host
                         </label>
-                        <input type="text" name="db_host" id="db_host" value="localhost"
+                        <input type="text" name="db_host" id="db_host" value="127.0.0.1"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                     <div>
