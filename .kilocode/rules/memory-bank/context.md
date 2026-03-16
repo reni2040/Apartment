@@ -1,10 +1,10 @@
-# Active Context: PHP Apartment Management System
+# Active Context: Next.js Starter Template
 
 ## Current State
 
-**Project Status**: ✅ PHP-based Apartment Management System created
+**Project Status**: ✅ Modern Next.js landing page UI created
 
-A comprehensive apartment management system has been built with PHP, featuring role-based access control, maintenance fee management, payment processing, reports, and more.
+A modern landing page has been created for the Next.js template with a polished dark theme design.
 
 ## Recently Completed
 
@@ -18,6 +18,7 @@ A comprehensive apartment management system has been built with PHP, featuring r
 - [x] Settings module for society configuration
 - [x] Installer script with automatic database setup
 - [x] Role-based dashboards for all user types
+- [x] Modern dark-themed landing page for Next.js template
 
 ## Current Structure
 
