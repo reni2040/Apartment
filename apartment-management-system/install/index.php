@@ -49,6 +49,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db_user = $_POST['db_user'] ?? '';
         $db_pass = $_POST['db_pass'] ?? '';
         
+        // Auto-detect Cloudways credentials if empty
+        if (empty($db_host) && getenv('DB_HOST')) {
+            $db_host = getenv('DB_HOST');
+            $db_port = getenv('DB_PORT') ?: '3306';
+            $db_name = getenv('DB_NAME');
+            $db_user = getenv('DB_USER');
+            $db_pass = getenv('DB_PASSWORD');
+        }
+        
         if (empty($db_host) || empty($db_name) || empty($db_user)) {
             $errors[] = 'Please fill in all required fields';
         } else {
@@ -221,7 +230,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Database Step -->
             <?php elseif ($current_step === 'database'): ?>
+                <?php 
+                // Pre-fill from Cloudways env vars
+                $default_host = getenv('DB_HOST') ?: 'localhost';
+                $default_port = getenv('DB_PORT') ?: '3306';
+                $default_name = getenv('DB_NAME') ?: '';
+                $default_user = getenv('DB_USER') ?: '';
+                ?>
                 <h2 class="text-xl font-semibold mb-6">Database Configuration</h2>
+                <?php if (getenv('DB_HOST')): ?>
+                    <div class="mb-4 bg-green-50 border border-green-200 rounded-lg p-3 text-sm text-green-700">
+                        ✅ Cloudways credentials detected! Just enter database name if needed.
+                    </div>
+                <?php endif; ?>
                 <form method="POST">
                     <input type="hidden" name="action" value="test_db">
                     
@@ -229,26 +250,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Database Host *</label>
-                                <input type="text" name="db_host" id="db_host" value="localhost" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="e.g. localhost or mysql-xxxxx">
+                                <input type="text" name="db_host" id="db_host" value="<?= $default_host ?>" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Port</label>
-                                <input type="text" name="db_port" value="3306"
+                                <input type="text" name="db_port" value="<?= $default_port ?>"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Database Name *</label>
-                            <input type="text" name="db_name" id="db_name" required
+                            <input type="text" name="db_name" id="db_name" value="<?= $default_name ?>" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Username *</label>
-                            <input type="text" name="db_user" id="db_user" required
+                            <input type="text" name="db_user" id="db_user" value="<?= $default_user ?>" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         
