@@ -12,12 +12,13 @@ $config = include __DIR__ . '/config.php';
 
 // Database connection
 $host = $config['db']['host'];
+$port = $config['db']['port'] ?? '3306';
 $dbname = $config['db']['name'];
 $username = $config['db']['user'];
 $password = $config['db']['pass'];
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());

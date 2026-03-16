@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($action === 'test_db') {
         $db_host = $_POST['db_host'] ?? '';
+        $db_port = $_POST['db_port'] ?? '3306';
         $db_name = $_POST['db_name'] ?? '';
         $db_user = $_POST['db_user'] ?? '';
         $db_pass = $_POST['db_pass'] ?? '';
@@ -37,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'Please fill in all required fields';
         } else {
             try {
-                $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+                $pdo = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name", $db_user, $db_pass);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $success[] = 'Database connection successful!';
-                $_SESSION['db_config'] = compact('db_host', 'db_name', 'db_user', 'db_pass');
+                $_SESSION['db_config'] = compact('db_host', 'db_port', 'db_name', 'db_user', 'db_pass');
             } catch (PDOException $e) {
                 $errors[] = 'Connection failed: ' . $e->getMessage();
             }
@@ -49,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($action === 'install') {
         $db_host = $_SESSION['db_config']['db_host'] ?? '';
+        $db_port = $_SESSION['db_config']['db_port'] ?? '3306';
         $db_name = $_SESSION['db_config']['db_name'] ?? '';
         $db_user = $_SESSION['db_config']['db_user'] ?? '';
         $db_pass = $_SESSION['db_config']['db_pass'] ?? '';
@@ -61,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'Please fill in all required fields';
         } else {
             try {
-                $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+                $pdo = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name", $db_user, $db_pass);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
                 $sql = file_get_contents(__DIR__ . '/schema.sql');
@@ -77,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $config .= "return [\n";
                 $config .= "    'db' => [\n";
                 $config .= "        'host' => '$db_host',\n";
+                $config .= "        'port' => '$db_port',\n";
                 $config .= "        'name' => '$db_name',\n";
                 $config .= "        'user' => '$db_user',\n";
                 $config .= "        'pass' => '$db_pass',\n";
@@ -194,11 +197,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="hidden" name="action" value="test_db">
                     
                     <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Database Host *</label>
-                            <input type="text" name="db_host" value="127.0.0.1" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                            <p class="text-xs text-gray-500 mt-1">For Cloudways: use your MySQL hostname from dashboard</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Database Host *</label>
+                                <input type="text" name="db_host" value="127.0.0.1" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Port</label>
+                                <input type="text" name="db_port" value="3306"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
                         </div>
                         
                         <div>
