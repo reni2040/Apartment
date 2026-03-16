@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Apartment Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@4.0.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-lg">
+            <div class="p-6">
+                <div class="flex items-center space-x-3">
+                    <img class="h-8 w-auto" src="https://img.icons8.com/color/96/000000/apartment.png" alt="Apartment">
+                    <span class="text-xl font-bold text-gray-900">Admin Panel</span>
+                </div>
+            </div>
+            <nav class="mt-6 space-y-2 px-4">
+                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-lg">
+                    <img class="h-4 w-4 mr-3" src="https://img.icons8.com/ios-filled/50/000000/dashboard-layout.png" alt="Dashboard">
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg">
+                    <img class="h-4 w-4 mr-3" src="https://img.icons8.com/ios-filled/50/000000/user-group.png" alt="Users">
+                    Users
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg">
+                    <img class="h-4 w-4 mr-3" src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Flats">
+                    Flats
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg">
+                    <img class="h-4 w-4 mr-3" src="https://img.icons8.com/ios-filled/50/000000/coins.png" alt="Maintenance">
+                    Maintenance
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg">
+                    <img class="h-4 w-4 mr-3" src="https://img.icons8.com/ios-filled/50/000000/chart.png" alt="Reports">
+                    Reports
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg">
+                    <img class="h-4 w-4 mr-3" src="https://img.icons8.com/ios-filled/50/000000/settings.png" alt="Settings">
+                    Settings
+                </a>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <header class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+                <p class="text-sm text-gray-500 mt-1">Welcome back, Admin!</p>
+            </header>
+            
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Total Flats</p>
+                            <p class="text-2xl font-bold text-gray-900">120</p>
+                        </div>
+                        <div class="flex h-10 w-10 items-center justify-center bg-indigo-100 rounded-lg">
+                            <img class="h-5 w-5" src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Flats">
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Occupied Flats</p>
+                            <p class="text-2xl font-bold text-gray-900">98</p>
+                        </div>
+                        <div class="flex h-10 w-10 items-center justify-center bg-indigo-100 rounded-lg">
+                            <img class="h-5 w-5" src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Occupied Flats">
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Total Users</p>
+                            <p class="text-2xl font-bold text-gray-900">145</p>
+                        </div>
+                        <div class="flex h-10 w-10 items-center justify-center bg-indigo-100 rounded-lg">
+                            <img class="h-5 w-5" src="https://img.icons8.com/ios-filled/50/000000/user-group.png" alt="Users">
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Maintenance Due</p>
+                            <p class="text-2xl font-bold text-gray-900">₹98,000</p>
+                        </div>
+                        <div class="flex h-10 w-10 items-center justify-center bg-indigo-100 rounded-lg">
+                            <img class="h-5 w-5" src="https://img.icons8.com/ios-filled/50/000000/coins.png" alt="Maintenance">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Recent Activity</h2>
+                <div class="space-y-4">
+                    <div class="border-t py-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-gray-700">New Complaints</span>
+                            <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded">5</span>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">You have 5 new complaint(s) requiring attention.</p>
+                    </div>
+                    
+                    <div class="border-t py-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-gray-700">Collection Rate</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">85%</span>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">₹85,000 collected of ₹1,00,000 total due</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="mt-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <a href="#" class="bg-white rounded-lg shadow p-4 hover:bg-indigo-50 hover:shadow-md transition-all">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8" src="https://img.icons8.com/ios-filled/50/000000/user-group.png" alt="Users">
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-700">Manage Users</p>
+                                <p class="text-xs text-gray-500 mt-1">Add, edit, or remove users</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="bg-white rounded-lg shadow p-4 hover:bg-indigo-50 hover:shadow-md transition-all">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8" src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Flats">
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-700">Manage Flats</p>
+                                <p class="text-xs text-gray-500 mt-1">Add, edit, or remove flats</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="bg-white rounded-lg shadow p-4 hover:bg-indigo-50 hover:shadow-md transition-all">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8" src="https://img.icons8.com/ios-filled/50/000000/coins.png" alt="Maintenance">
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-700">Maintenance Fees</p>
+                                <p class="text-xs text-gray-500 mt-1">Set fees, view dues, collect payments</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer class="text-center text-xs text-gray-500 py-4">
+        © 2026 Apartment Management System. All rights reserved.
+    </footer>
+</body>
+</html>

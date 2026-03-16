@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@4.0.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <img class="mx-auto h-20 w-auto mb-6" src="https://img.icons8.com/color/96/000000/apartment.png" alt="Apartment">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Apartment Management System</h1>
+                <p class="text-xl text-gray-600">A comprehensive solution for society management</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">For Owners</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            View & pay maintenance fees
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Download payment reports
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Raise complaints
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            View society notices
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">For Management</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Set & update maintenance fees
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Manage users & permissions
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Track payments & generate reports
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Handle complaints & notices
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">User Roles</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="text-center p-3 bg-indigo-50 rounded-lg">
+                        <span class="font-semibold text-indigo-700">Admin</span>
+                        <p class="text-xs text-gray-600">Full control</p>
+                    </div>
+                    <div class="text-center p-3 bg-indigo-50 rounded-lg">
+                        <span class="font-semibold text-indigo-700">Owner</span>
+                        <p class="text-xs text-gray-600">Pay fees, view reports</p>
+                    </div>
+                    <div class="text-center p-3 bg-indigo-50 rounded-lg">
+                        <span class="font-semibold text-indigo-700">President</span>
+                        <p class="text-xs text-gray-600">View reports & notices</p>
+                    </div>
+                    <div class="text-center p-3 bg-indigo-50 rounded-lg">
+                        <span class="font-semibold text-indigo-700">Secretary</span>
+                        <p class="text-xs text-gray-600">Manage notices & complaints</p>
+                    </div>
+                    <div class="text-center p-3 bg-indigo-50 rounded-lg">
+                        <span class="font-semibold text-indigo-700">Treasurer</span>
+                        <p class="text-xs text-gray-600">Manage payments & reports</p>
+                    </div>
+                    <div class="text-center p-3 bg-indigo-50 rounded-lg">
+                        <span class="font-semibold text-indigo-700">Executive</span>
+                        <p class="text-xs text-gray-600">Limited access</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-gray-600 mb-4">To use this system, you need to run it on a PHP server with MySQL.</p>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                    <p class="text-yellow-800 text-sm">
+                        <strong>Installation Required:</strong> This is a PHP application that requires a MySQL database. 
+                        Run <code class="bg-yellow-100 px-2 py-1 rounded">php -S localhost:8000</code> in the project directory, 
+                        then visit <code class="bg-yellow-100 px-2 py-1 rounded">http://localhost:8000/install</code> to set up the system.
+                    </p>
+                </div>
+                <p class="text-sm text-gray-500">
+                    Default admin login after installation:<br>
+                    Email: <code class="bg-gray-100 px-2 py-1 rounded">admin@society.com</code> | 
+                    Password: <code class="bg-gray-100 px-2 py-1 rounded">admin123</code>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
